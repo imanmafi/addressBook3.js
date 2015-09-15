@@ -14,14 +14,15 @@ describe('Contact', function() {
 
 describe('Address', function() {
   it('creates a new address with the given specs', function() {
-    var testAddress = new Address("123 Sesame Street", "New York", "NY");
+    var testAddress = new Address("123 Sesame Street", "New York", "NY", "work");
     expect(testAddress.street).to.equal("123 Sesame Street");
     expect(testAddress.city).to.equal("New York");
     expect(testAddress.state).to.equal("NY");
+    expect(testAddress.addressType).to.equal('work');
   });
 
   it('adds the fullAddress method to all addresses', function() {
-    var testAddress = new Address("123 Sesame Street", "New York", "NY");
+    var testAddress = new Address("123 Sesame Street", "New York", "NY", 'work');
     expect(testAddress.fullAddress()).to.equal("123 Sesame Street, New York, NY");
   });
 });
