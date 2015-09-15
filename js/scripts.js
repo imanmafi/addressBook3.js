@@ -20,27 +20,9 @@ Address.prototype.fullAddress = function(){
 }
 
 
-
 $(document).ready(function() {
   $("#add-address").click(function() {
-    $("#new-addresses").append('<div class="new-address">' +
-                                '<div class="form-group">' +
-                                  '<label for="new-street">Street</label>' +
-                                  '<input type="text" class="form-control new-street">' +
-                                '</div>' +
-                                '<div class="form-group">' +
-                                  '<label for="new-city">City</label>' +
-                                  '<input type="text" class="form-control new-city">' +
-                                '</div>' +
-                                '<div class="form-group">' +
-                                  '<label for="new-state">State</label>' +
-                                  '<input type="text" class="form-control new-state">' +
-                                '</div>' +
-                                '<div class="form-group">' +
-                                  '<label for="new-type">Type</label>' +
-                                  '<input type="text" class="form-control new-type">' +
-                                '</div>' +
-                              '</div>');
+    appendAddressHtml($("#new-addresses"));
   });
 
   $("form#new-contact").submit(function(event) {
@@ -63,8 +45,6 @@ $(document).ready(function() {
 
     $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
 
-
-
     $(".contact").last().click(function() {
       $("#show-contact").show();
       $("#show-contact h2").text(newContact.firstName + " " + newContact.lastName);
@@ -77,6 +57,7 @@ $(document).ready(function() {
       });
     });
 
+    clearExtraAddressFields();
     resetFields();
   });
 });
@@ -87,4 +68,31 @@ function resetFields() {
   $("input.new-street").val("");
   $("input.new-city").val("");
   $("input.new-state").val("");
+  $("input.new-type").val("");
+}
+
+function appendAddressHtml(element) {
+  element.append('<h4 class="new-address">___________________________________________________________________</h4>' +
+                  '<div class="new-address">' +
+                    '<div class="form-group">' +
+                      '<label for="new-street">Street</label>' +
+                      '<input type="text" class="form-control new-street">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                      '<label for="new-city">City</label>' +
+                      '<input type="text" class="form-control new-city">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                      '<label for="new-state">State</label>' +
+                      '<input type="text" class="form-control new-state">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                      '<label for="new-type">Type</label>' +
+                      '<input type="text" class="form-control new-type">' +
+                    '</div>' +
+                  '</div>');
+}
+
+function clearExtraAddressFields() {
+  $(".new-address").not(":first").hide();
 }
